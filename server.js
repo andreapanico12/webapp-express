@@ -7,10 +7,13 @@ const moviesRouter = require(`./router/moviesRouter`);
 
 const errorHandler = require(`./middlewares/errorHandler`);
 const notFoundHandler = require(`./middlewares/notFoundHandler`);
+const imagePathMd = require(`./middlewares/imagePath`);
 
 app.use(express.static(`public`));
 
 app.use(express.json());
+
+app.use(imagePathMd);
 
 app.get(`/`, (req,res) => {
   res.send(`Server Movies`);
