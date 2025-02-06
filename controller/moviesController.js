@@ -25,14 +25,25 @@ const show = (req,res) =>{
   FROM movies
   WHERE movies.id =?`
 
+  const sqlReviews = `SELECT *
+  FROM reviews
+  WHERE reviews.movie_id = ?`
+
   connection.query(sql, [id], (err,results) => {
     if(err) return res.status(500).json({error: `database query failed`})
     if(results.length === 0 || results[id] === null)  return res.status(404).json({error: `movies not found`})
 
-    const movie = results[0]
-    res.json({
-      ...movie,
-      image: req.imagePath + movie.image
+    connection.query(sqlReviews, [id], (err,resultsReviews) => {
+      if(err) return res.status(500).json({error: `database query failed`})
+
+        const movie = results[0]
+        res.json({
+          ...movie,
+          image: req.imagePath + movie.image,
+          reviews: resultsReviews  
+    })  
+
+
     })  
   })
 };
