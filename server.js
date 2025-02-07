@@ -3,6 +3,9 @@ const app = express();
 require(`dotenv`).config();
 const port = process.env.PORT || 3000;
 const moviesRouter = require(`./router/moviesRouter`);
+const cors = require('cors')
+
+app.use(cors({origin:'http://localhost:5173'}))
 
 
 const errorHandler = require(`./middlewares/errorHandler`);
