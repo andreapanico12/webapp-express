@@ -24,6 +24,7 @@ app.get(`/`, (req,res) => {
 
 app.use(`/api/movies`,moviesRouter);
 
+
 app.use(errorHandler);
 app.use(notFoundHandler);
 
