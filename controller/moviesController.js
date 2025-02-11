@@ -68,8 +68,14 @@ const reviewsStore = (req,res) =>{
   })
 }
 
+
+const store = (req,res) =>{
+  res.json({message: `Movie Added`})
+}
+
 module.exports = {
   index,
   show,
-  reviewsStore
+  reviewsStore,
+  store
 }
